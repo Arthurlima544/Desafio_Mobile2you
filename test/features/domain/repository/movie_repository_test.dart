@@ -5,11 +5,12 @@ import 'package:app_movie/features/domain/usecases/GetMovieDetailsUsecase.dart';
 import 'package:dartz/dartz.dart';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-class MockMovieDetailsRepository extends Mock
-    implements MovieDetailsRepository {}
+import 'movie_repository_test.mocks.dart';
 
+@GenerateMocks([MovieDetailsRepository])
 void main() {
   final movie = Movie(
     title: "MovieTest",
@@ -24,11 +25,10 @@ void main() {
     final params = Parameters(id: 505);
     final usecase = GetMovieDetails(repo);
 
-    when(repo.getmovieDetails(params))
+    when(repo.getmovieDetails(params.id))
         .thenAnswer((realInvocation) async => Right(movie));
+    final result = await usecase(params);
 
-    final result = await usecase.call(params);
-
-    expect(result, Right(movie));
+    expectLater(result, Right(movie));
   });
 }
