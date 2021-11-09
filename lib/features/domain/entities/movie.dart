@@ -6,7 +6,7 @@ class Movie extends Equatable {
   final int id;
   final String title;
   final int likes;
-  final Float popularity;
+  final double popularity;
 
   Movie({
     required this.id,
