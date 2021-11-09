@@ -4,7 +4,7 @@
 
 import 'dart:async' as _i4;
 
-import 'package:app_movie/core/error/failure.dart' as _i5;
+import 'package:app_movie/core/error/Failures.dart/failure.dart' as _i5;
 import 'package:app_movie/features/domain/entities/movie.dart' as _i6;
 import 'package:app_movie/features/domain/repository/MovieDetailsRepository.dart'
     as _i3;
