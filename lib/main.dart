@@ -1,3 +1,4 @@
+import 'package:app_movie/features/presentation/pages/MovieDetailsPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: MovieDetailsPage(),
     );
   }
 }

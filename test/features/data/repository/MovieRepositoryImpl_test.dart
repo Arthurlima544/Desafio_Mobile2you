@@ -15,7 +15,7 @@ import 'MovieRepositoryImpl_test.mocks.dart';
 
 @GenerateMocks([MovieRemoteDataSourceImpl])
 void main() {
-  late MockMovieRemoteDataSource mockRemoteDataSource;
+  late MockMovieRemoteDataSourceImpl mockRemoteDataSource;
   late MovieDetailsRepositoryImpl repositoryImpl;
   final params = Parameters(id: 550);
   final movieModel = MovieModel(
@@ -25,7 +25,7 @@ void main() {
     id: 550,
   );
   setUp(() {
-    mockRemoteDataSource = MockMovieRemoteDataSource();
+    mockRemoteDataSource = MockMovieRemoteDataSourceImpl();
     repositoryImpl =
         MovieDetailsRepositoryImpl(remoteDataSource: mockRemoteDataSource);
   });
