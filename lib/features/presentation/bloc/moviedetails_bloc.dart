@@ -1,3 +1,4 @@
+import 'package:app_movie/core/error/ErrorMessages.dart';
 import 'package:app_movie/core/utils/parameters.dart';
 import 'package:app_movie/features/domain/entities/movie.dart';
 import 'package:app_movie/features/domain/usecases/GetMovieDetailsUsecase.dart';
@@ -17,7 +18,7 @@ class MoviedetailsBloc extends Bloc<MoviedetailsEvent, MoviedetailsState> {
     if (event is GetMovieDetailsEvent) {
       final failureOrMovie = await getMovieDetails(event.params);
       yield failureOrMovie.fold(
-        (failure) => throw UnimplementedError(),
+        (failure) => MoviedetailsErrorState(message: SERVER_FAILURE_MESSAGE),
         (movie) => MoviedetailsLoadedState(movie: movie),
       );
     }

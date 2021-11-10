@@ -18,3 +18,11 @@ class MoviedetailsLoadedState extends MoviedetailsState {
 }
 
 class MoviedetailsLoadingState extends MoviedetailsState {}
+
+class MoviedetailsErrorState extends MoviedetailsState {
+  final String message;
+
+  MoviedetailsErrorState({required this.message});
+  @override
+  List<Object> get props => [message];
+}

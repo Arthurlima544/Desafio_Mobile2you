@@ -1,3 +1,6 @@
+import 'package:app_movie/core/error/ErrorMessages.dart';
+import 'package:app_movie/core/error/Exceptions/ServerException.dart';
+import 'package:app_movie/core/error/Failures.dart/ServerFailure.dart';
 import 'package:app_movie/core/utils/parameters.dart';
 import 'package:app_movie/features/data/models/movieModel.dart';
 import 'package:app_movie/features/domain/entities/movie.dart';
@@ -22,11 +25,23 @@ void main() {
     bloc = MoviedetailsBloc(getMovieDetails: mockGetMovieDetails);
   });
   test('Deve receber dados pelo usecase', () {
-    when(mockGetMovieDetails(params))
+    when(mockGetMovieDetails(any))
         .thenAnswer((realInvocation) async => Right(movie));
     bloc.add(GetMovieDetailsEvent(params: params));
 
     expectLater(
         bloc.stream, emitsInOrder([MoviedetailsLoadedState(movie: movie)]));
+  });
+  test(
+      'Deve retornar um estado de Falha caso não seja possivel carregar os dados do usecase',
+      () {
+    when(mockGetMovieDetails(any))
+        .thenAnswer((realInvocation) async => Left(ServerFailure()));
+    bloc.add(GetMovieDetailsEvent(params: params));
+
+    expectLater(
+        bloc.stream,
+        emitsInOrder(
+            [MoviedetailsErrorState(message: SERVER_FAILURE_MESSAGE)]));
   });
 }
