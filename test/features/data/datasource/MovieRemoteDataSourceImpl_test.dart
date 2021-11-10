@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app_movie/core/error/Exceptions/ServerException.dart';
 import 'package:app_movie/core/utils/parameters.dart';
 import 'package:app_movie/features/data/datasource/MovieRemoteDataSourceImpl.dart';
 import 'package:app_movie/features/data/models/MovieModel.dart';
@@ -36,5 +37,15 @@ void main() {
     final result = await datasource.getmovieDetails(params.id);
 
     expect(result, equals(movieModel));
+  });
+
+  test('deve ser feito uma requisição get e ocorrer uma ServerException',
+      () async {
+    when(mockClient.get(Uri.parse(url))).thenAnswer((realInvocation) async =>
+        http.Response("Não foi possivel realizar requisição", 404));
+
+    final call = datasource.getmovieDetails;
+
+    expect(() => call(params.id), throwsA(TypeMatcher<ServerException>()));
   });
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app_movie/core/error/Exceptions/ServerException.dart';
 import 'package:app_movie/features/data/datasource/MovieRemoteDataSource.dart';
 import 'package:app_movie/features/data/models/MovieModel.dart';
 import 'package:http/http.dart' as http;
@@ -14,6 +15,9 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   Future<MovieModel> getmovieDetails(int id) async {
     String url = "https://api.themoviedb.org/3/movie/$id?api_key=$apikey";
     final response = await client.get(Uri.parse(url));
-    return MovieModel.fromJson(json.decode(response.body));
+    if (response.statusCode == 200) {
+      return MovieModel.fromJson(json.decode(response.body));
+    }
+    throw ServerException(message: "Não foi possivel realizar requisição");
   }
 }
