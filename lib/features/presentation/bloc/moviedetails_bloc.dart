@@ -2,6 +2,7 @@ import 'package:app_movie/core/error/ErrorMessages.dart';
 import 'package:app_movie/core/utils/parameters.dart';
 import 'package:app_movie/features/domain/entities/movie.dart';
 import 'package:app_movie/features/domain/usecases/GetMovieDetailsUsecase.dart';
+import 'package:app_movie/features/domain/usecases/GetSimilarMovieUsecase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -10,8 +11,10 @@ part 'moviedetails_state.dart';
 
 class MoviedetailsBloc extends Bloc<MoviedetailsEvent, MoviedetailsState> {
   final GetMovieDetails getMovieDetails;
+  final GetSimilarMovies getSimilarMovies;
 
-  MoviedetailsBloc({required this.getMovieDetails})
+  MoviedetailsBloc(
+      {required this.getMovieDetails, required this.getSimilarMovies})
       : super(MoviedetailsInitialState());
   @override
   Stream<MoviedetailsState> mapEventToState(MoviedetailsEvent event) async* {
