@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app_movie/core/error/Exceptions/ServerException.dart';
 import 'package:app_movie/features/data/models/similarMoviesModel.dart';
 import 'package:http/http.dart' as http;
 import 'SimilarMovieDataSource.dart';
@@ -15,7 +16,9 @@ class SimilarMovieDataSourceImpl implements SimilarMovieDataSource {
     String url =
         "https://api.themoviedb.org/3/movie/$id/similar?api_key=$apikey&page=$page";
     final response = await client.get(Uri.parse(url));
-
-    return SimilarMoviesModel.fromJson(json.decode(response.body));
+    if (response.statusCode == 200) {
+      return SimilarMoviesModel.fromJson(json.decode(response.body));
+    }
+    throw ServerException(message: "Não foi possivel realizar requisição");
   }
 }

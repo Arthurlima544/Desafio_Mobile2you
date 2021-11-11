@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app_movie/core/error/Exceptions/ServerException.dart';
 import 'package:app_movie/core/utils/SimilarParameters.dart';
 import 'package:app_movie/features/data/datasource/SimilarMovieDataSourceImpl.dart';
 import 'package:app_movie/features/data/models/movieModel.dart';
@@ -49,5 +50,19 @@ void main() {
     final result = await dataSource.getSimilarMovies(params.id, params.page);
 
     expect(result, equals(similarModel));
+  });
+  test(
+      'Deve ser feito uma requisição get e obtido ServerException em caso de falha ',
+      () async {
+    final url =
+        "https://api.themoviedb.org/3/movie/${params.id}/similar?api_key=$apikey&page=${params.page}";
+
+    when(mockClient.get(Uri.parse(url))).thenAnswer((realInvocation) async =>
+        http.Response("Não foi possivel realizar requisição", 404));
+
+    final call = dataSource.getSimilarMovies;
+
+    expect(() => call(params.id, params.page),
+        throwsA(TypeMatcher<ServerException>()));
   });
 }
