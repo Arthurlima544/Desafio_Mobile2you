@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-        )..add(GetMovieDetailsEvent(params: Parameters(id: 505))),
+        )..add(GetMovieDetailsEvent(params: Parameters(id: 550))),
         child: MovieDetailsPage(),
       ),
     );
