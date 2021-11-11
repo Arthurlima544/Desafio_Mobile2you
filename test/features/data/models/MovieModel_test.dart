@@ -10,6 +10,7 @@ void main() {
     likes: 22325,
     popularity: 46.864,
     id: 550,
+    posterPath: "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
   );
   File file;
   dynamic json;
