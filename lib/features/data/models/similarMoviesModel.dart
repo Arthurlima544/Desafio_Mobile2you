@@ -4,17 +4,19 @@ import 'package:equatable/equatable.dart';
 
 import 'movieModel.dart';
 
-class SimilarMoviesModel extends Equatable {
+class SimilarMoviesModel extends SimilarMovies {
   List<MovieModel> similarMovies = <MovieModel>[];
 
-  SimilarMoviesModel(this.similarMovies);
+  SimilarMoviesModel(this.similarMovies) : super(similarMovies: similarMovies);
 
-  SimilarMoviesModel.fromJson(Map<String, dynamic> json) {
+  factory SimilarMoviesModel.fromJson(Map<String, dynamic> json) {
+    List<MovieModel> similarMovies = <MovieModel>[];
     if (json['results'] != null) {
       json['results'].forEach((element) {
         similarMovies.add(new MovieModel.fromJson(element));
       });
     }
+    return SimilarMoviesModel(similarMovies);
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -23,7 +25,4 @@ class SimilarMoviesModel extends Equatable {
     }
     return data;
   }
-
-  @override
-  List<Object?> get props => [similarMovies];
 }
