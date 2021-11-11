@@ -17,6 +17,7 @@ void main() {
     id: 505,
     likes: 55,
     popularity: 55.2,
+    posterPath: "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
   );
   test(
       'deve retornar um objeto do Tipo Movie ao chamar um usecase especificando um parametro',

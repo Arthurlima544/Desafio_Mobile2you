@@ -18,8 +18,12 @@ void main() {
   late MockGetMovieDetails mockGetMovieDetails;
   late MoviedetailsBloc bloc;
   final params = Parameters(id: 550);
-  final movie =
-      Movie(id: 550, popularity: 46.864, title: "Fight Club", likes: 22325);
+  final movie = Movie(
+      id: 550,
+      popularity: 46.864,
+      title: "Fight Club",
+      likes: 22325,
+      posterPath: "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg");
   setUp(() {
     mockGetMovieDetails = MockGetMovieDetails();
     bloc = MoviedetailsBloc(getMovieDetails: mockGetMovieDetails);
