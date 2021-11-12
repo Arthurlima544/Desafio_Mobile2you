@@ -1,5 +1,7 @@
 import 'package:app_movie/core/error/ErrorMessages.dart';
+import 'package:app_movie/core/utils/SimilarParameters.dart';
 import 'package:app_movie/core/utils/parameters.dart';
+import 'package:app_movie/features/domain/entities/SimilarMovies.dart';
 import 'package:app_movie/features/domain/entities/movie.dart';
 import 'package:app_movie/features/domain/usecases/GetMovieDetailsUsecase.dart';
 import 'package:app_movie/features/domain/usecases/GetSimilarMovieUsecase.dart';
@@ -20,10 +22,24 @@ class MoviedetailsBloc extends Bloc<MoviedetailsEvent, MoviedetailsState> {
   Stream<MoviedetailsState> mapEventToState(MoviedetailsEvent event) async* {
     if (event is GetMovieDetailsEvent) {
       final failureOrMovie = await getMovieDetails(event.params);
-      yield failureOrMovie.fold(
-        (failure) => MoviedetailsErrorState(message: SERVER_FAILURE_MESSAGE),
-        (movie) => MoviedetailsLoadedState(movie: movie),
-      );
+      final failureOrSimilarMovie = await getSimilarMovies(event.similarParams);
+
+      if (failureOrSimilarMovie.isLeft() || failureOrMovie.isLeft()) {
+        yield MoviedetailsErrorState(message: SERVER_FAILURE_MESSAGE);
+      } else {
+        var rightMovie;
+        var rightSimilarMovie;
+        rightMovie = failureOrMovie.fold(
+          (failure) => failure,
+          (movie) => movie,
+        );
+        rightSimilarMovie = failureOrSimilarMovie.fold(
+          (failure) => failure,
+          (movie) => movie,
+        );
+        yield MoviedetailsLoadedState(
+            movie: rightMovie, similarMovies: rightSimilarMovie);
+      }
     }
   }
 }

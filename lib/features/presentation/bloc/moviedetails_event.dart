@@ -9,8 +9,12 @@ abstract class MoviedetailsEvent extends Equatable {
 
 class GetMovieDetailsEvent extends MoviedetailsEvent {
   final Parameters params;
+  final SimilarMovieParameters similarParams;
 
-  GetMovieDetailsEvent({required this.params});
+  GetMovieDetailsEvent({
+    required this.params,
+    required this.similarParams,
+  });
   @override
-  List<Object> get props => [params];
+  List<Object> get props => [params, similarParams];
 }
