@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:app_movie/core/utils/SimilarParameters.dart';
 import 'package:app_movie/core/utils/parameters.dart';
 import 'package:app_movie/features/data/datasource/MovieRemoteDataSourceImpl.dart';
 import 'package:app_movie/features/data/datasource/SimilarMovieDataSourceImpl.dart';
@@ -39,7 +40,9 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-        )..add(GetMovieDetailsEvent(params: Parameters(id: 550))),
+        )..add(GetMovieDetailsEvent(
+            params: Parameters(id: 505),
+            similarParams: SimilarMovieParameters(id: 505, page: 1))),
         child: MovieDetailsPage(),
       ),
     );
