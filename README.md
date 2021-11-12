@@ -1,16 +1,21 @@
-# app_movie
+# Desafio-Mobile2You
 
-A new Flutter project.
+## Agradecimentos
+Quero agradecer a equipe Mobile2You, por Proporcionar este desafio e por dedicar tempo e atenção para mim, Obtive muito conhencimento durante todo esse periodo.
 
-## Getting Started
+## Descrição
+Projeto com o Objetivo de Utilizar A Api https://developers.themoviedb.org/3/getting-started/introduction Para gerar Uma Tela Principal Com Detalhes sobre os Filmes
 
-This project is a starting point for a Flutter application.
+## Organização Das Branchs
+feature/ → Branch de feature
+fix/ →Nome da feature
+Develop -> Branch principal
 
-A few resources to get you started if this is your first Flutter project:
+## Desafios Enfrentados
+Compreender e Implementar Arquitetura de software Clean;
+Compreender e Realizar rquisições em uma API;
+Estar Constantemente realizando commits;
+Melhor Entendimento sobre Flutter 2 - Null-Safety;
+Melhor Entendimento sobre Testes Unitários;
+Melhor Entendimento sobre Tratamento de Exceptions;
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
