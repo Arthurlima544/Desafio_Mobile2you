@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:app_movie/features/domain/entities/movie.dart';
 import 'package:app_movie/features/domain/usecases/GetMovieDetailsUsecase.dart';
 import 'package:app_movie/features/presentation/bloc/moviedetails_bloc.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,6 +24,17 @@ class MovieDetailsPage extends StatelessWidget {
                     ),
                   ),
                   CardMovieDetails(movie: state.movie),
+                  Container(
+                    child: ListView(
+                      children: [
+                        ...state.similarMovies.similarMovies.map(
+                          (movie) => ItemListMovieSimiliar(movie: movie),
+                        ),
+                      ],
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                    ),
+                  ),
                 ],
               ),
             );
@@ -31,6 +43,29 @@ class MovieDetailsPage extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         },
+      ),
+    );
+  }
+}
+
+class ItemListMovieSimiliar extends StatelessWidget {
+  final Movie movie;
+
+  const ItemListMovieSimiliar({Key? key, required this.movie})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.black,
+      child: Container(
+        child: ListTile(
+            leading: Image.network(
+                "http://image.tmdb.org/t/p/w200${movie.posterPath}"),
+            title: Text(
+              "${movie.title}",
+              style: TextStyle(color: Colors.white),
+            )),
       ),
     );
   }
@@ -62,10 +97,12 @@ class CardMovieDetails extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  child: Icon(
-                    Icons.favorite,
-                    color: Colors.white,
-                    size: 30,
+                  child: GestureDetector(
+                    child: Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
                 )
               ],
