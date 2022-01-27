@@ -5,7 +5,8 @@ Projeto com o Objetivo de Utilizar A Api https://developers.themoviedb.org/3/get
 
 # Organização Das Branchs
  1. Main → Branch principal
- 2. feature/<nome da feature> → Branch de feature
+ 2.  Develop → Branch de versões
+ 3. feature/<nome da feature> → Branch de feature
 
 # Desafios Enfrentados
  1. Compreender e Implementar Arquitetura de software Clean;
