@@ -18,4 +18,3 @@ Estar Constantemente realizando commits;
 Melhor Entendimento sobre Flutter 2 - Null-Safety;
 Melhor Entendimento sobre Testes Unitários;
 Melhor Entendimento sobre Tratamento de Exceptions;
-
